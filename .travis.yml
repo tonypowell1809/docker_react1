@@ -1,0 +1,13 @@
+#tell travis we need a copy of docker running. 
+sudo: required  
+language: generic
+#  need this anytime uses docker
+services: 
+  - docker
+before_install:
+  - docker build -t tonypowell2222/docker-react1 -f Dockerfile.dev .   
+# build out image using Dockerfile.dev
+#Tell travis how to run test
+script:
+  - docker run -e CI=true tonypowell2222/docker-ract1 npm run test 
+#tell travis how to deploy our code to AWS
